@@ -9,7 +9,7 @@ class PopUpDialog extends StatefulWidget {
 
 class _PopUpDialogState extends State<PopUpDialog> {
   bool isEnabled=true;
-
+  TextEditingController dataController=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -34,6 +34,22 @@ class _PopUpDialogState extends State<PopUpDialog> {
                   ),
                 ],
               ),
+              TextField(
+                enabled: isEnabled,
+                controller: dataController,
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(),
+                ),
+              ),
+              ElevatedButton(
+                  onPressed:(){
+                    if(!dataController.text.isEmpty){
+                      Navigator.of(context).pop(dataController.text.toString());
+                    }
+                  },
+                  child: Text("Submit"),
+              )
             ],
           ),
         ),

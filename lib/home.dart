@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'popUpDialog.dart';
-import 'screen2.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -31,6 +30,7 @@ class _HomeState extends State<Home> {
               width:MediaQuery.of(context).size.width,
               child:Column(
                 children: [
+                  SizedBox(height:4),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
@@ -82,7 +82,7 @@ class _HomeState extends State<Home> {
                     },
                     child: Text("Show Alert Dialog"),
                   ),
-
+                  SizedBox(height:4),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
@@ -137,6 +137,7 @@ class _HomeState extends State<Home> {
                     },
                     child: Text("Show Alert Dialog"),
                   ),
+                  SizedBox(height:4),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
@@ -146,10 +147,11 @@ class _HomeState extends State<Home> {
                         showDialog(
                           context: context,
                           builder: (context) => PopUpDialog(),
-                        );
+                        ).then((value) =>{ info=value,setState((){})});
                       },
                       child: Text("Show Pop Up Dialog")
                   ),
+                  SizedBox(height:4),
                 ],
               ),
               decoration: BoxDecoration(
@@ -158,26 +160,12 @@ class _HomeState extends State<Home> {
               ),
             ),
             SizedBox(height:30),
-            Text("Get data from next screen",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+            Text("Data from next screen",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
             Container(
               width:MediaQuery.of(context).size.width,
-              child: Column(
-                children: [
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                        fixedSize: Size.fromWidth(MediaQuery.of(context).size.width*0.5),
-                      ),
-                      onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Screen2(),)).then((value) {setState(() {
-                          info=value;
-                        });});
-                      },
-                      child: Text("Navigate to screen 2")
-                  ),
-                  Text("Data from screen 2:"),
-                  Text(info),
-                ],
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(info),
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(20)),
